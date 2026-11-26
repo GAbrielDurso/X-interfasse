@@ -5,10 +5,10 @@ let modal = document.querySelection(".modal-fundo");
 btnAjuda.addEventListener("clik", abreModal);
 btnFechar.addEventListener("clik", fechaModal);
 function abreModal() {
-    modal.style.display = "block",
+    modal.style.display = "block";
 }
 function fechaModal() {
-    modal.style.display = "none",
+    modal.style.display = "none";
 }
 // TAMANHO DE FONTES
 let tamanhoFonteAtual = 16;
@@ -31,49 +31,35 @@ let lendo = false;
 let btnLeitura = document.querySelector(".botao-leitura");
 btnLeitura.addEventListener("click", lerEmVozAlta);
 function lerEmVozAlta() {
-    //se ja esta lendo
-    if(lendo == true)
 }
+    //se ja esta lendo
+    if(lendo == true) {
+    }
+
 // se estiver pausado
 if ( speechSynthesis.paused == true) {
     // continua de onde parou
     speechSynthesis.resume();
 }
 else{
+    //pausa
     //speechSynthesis.pause();
 }
 return;
-let btnAjuda = document.querySelector(".botao-ajuda");
-let btnFechar = document.querySelector(".botao-fechar");
-let modal = document.querySelector(".modal-fundo");
+{
+let conteudo = document.querySelector("main");
+let texto = conteudo.innerText;
 
+let fala = new SpeechSynthesisUtterance(texto);
 
-btnAjuda.addEventListener("click", abreModal);
-btnFechar.addEventListener("click", fechaModal);
+fala.lang = "pt-BR";
+fala.onend = finalizarLeitura;
 
+lendo = true
 
-function abreModal(){
-   modal.style.display = "block";
+speechSynthesis.cancel();
+speechSynthesis.speak(fala);
 }
-function fechaModal(){
-   modal.style.display = "none";
+function finalizarLeitura() {
+    lendo = false;
 }
-let tamanhoFonteAtual = 16;
-const valorAdicionado = 2;
-const valorSubtraido = 2;
-
-
-let btnAumentaFonte = document.getElementById("btnAumentaTexti");
-let btnDiminuiFonte = document.getElementById("btnDiminuiTexto");
-
-
-btnAumentaFonte.addEventListener("click", aumentaFonte);
-btnDiminuiFonte.addEventListener("click", diminuiFonte);
-
-
-function aumentaFonte(){
-   tamanhoFonteAtual = tamanhoFonteAtual + valorAdicionado;
-   document.documentElement.style.fontSize = `${tamanhoFonteAtual} px`;
-}
-function diminuiFonte(){
-   tamanhoFonteAtual = tamanhoFonteAtual - valorSubtraido;
